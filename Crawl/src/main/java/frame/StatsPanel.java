@@ -1,6 +1,10 @@
 package frame;
 
 import actor.Player;
+import items.Armor;
+import items.Weapon;
+
+import java.util.List;
 
 /**
  * Created by mzwart on 24-11-2016.
@@ -69,66 +73,55 @@ public class StatsPanel {
 			+ "\nStrength: " + strength + "(" + extraStrength + ")"
 			+ "\nAccuracy: " + accuracy + "(" + extraAccuracy + ")"
 			+ "\nAgility: " + agility + "(" + extraAgility + ")"
-			+ "\nPower score: " + powerScore;
+			+ "\nPower score: " + powerScore + "\n\n\n"
+			+ equippedToString(player.getHead(), player.getCuirass(), player.getGloves(), player.getBoots(), player.getMain())
+			+ armorToString(player.getArmorList()) + weaponToString(player.getWeaponList());
 		return leftTop;
 	}
 
-	/*public String checkArmorBay(List<Armor> armorList){
+	public String equippedToString(Armor head, Armor cuirass, Armor gloves, Armor boots, Weapon weapon){
+		String equipped = "";
+		equipped = "Type - Protection - Str/Agi/Acc"
+			+ "\nHead: " + head.getProtection() + " - " + head.getStrength() + "/" + head.getAgility() + "/" + head.getAccuracy()
+			+ "\nCuirass: " + cuirass.getProtection() + " - " + cuirass.getStrength() + "/" + cuirass.getAgility() + "/" + cuirass.getAccuracy()
+			+ "\nGloves: " + gloves.getProtection() + " - " + gloves.getStrength() + "/" + gloves.getAgility() + "/" + gloves.getAccuracy()
+			+ "\nBoots: " + boots.getProtection() + " - " + boots.getStrength() + "/" + boots.getAgility() + "/" + boots.getAccuracy()
+			+ "\nMain weapon: " + weapon.getDamage() + " - " + weapon.getStrength() + "/" + weapon.getAgility() + "/" + weapon.getAccuracy()
+			+ "\n\n";
+		return equipped;
+	}
+
+	public String armorToString(List<Armor> armorList){
 		String armor = "";
 		if(armorList.isEmpty()){
 			return armor;
 		}else{
 			for(int i = 0 ; i < armorList.size() ; i++) {
 				armor += "a" + (i+1) + " ";
-				armor += "Armor: " + armorList.get(i).getHullHealth() + " - Mis/Las def: "
-					+ armorList.get(i).getMissileDefence() + "/" + armorList.get(i).getLaserDefence() + "\n";
+				armor += "Armor: " + armorList.get(i).getType() + " - Prot: "
+					+ armorList.get(i).getProtection() + " - Str/Agi/Acc: " + armorList.get(i).getStrength()
+					+ "/" + armorList.get(i).getAgility() + "/" + armorList.get(i).getAccuracy()
+					+ "\n";
 			}
 			armor += "\n";
 		}
 		return armor;
 	}
 
-	public String checkMissileBay(List<Missile> missileList){
-		String missiles = "";
-		if(missileList.isEmpty()){
-			return missiles;
+	public String weaponToString(List<Weapon> weaponList){
+		String weapons = "";
+		if(weaponList.isEmpty()){
+			return weapons;
 		}else{
-			for(int i = 0 ; i < missileList.size() ; i++) {
-				missiles += "m" + (i+1) + " ";
-				missiles += "Missile damage: " + missileList.get(i).getDamage() + " ("
-					+ missileList.get(i).getAmount() + ")\n";
+			for(int i = 0 ; i < weaponList.size() ; i++) {
+				weapons += "m" + (i+1) + " ";
+				weapons += "Weapon damage: " + weaponList.get(i).getDamage() + " - Str/Agi/Acc: "
+					+ weaponList.get(i).getStrength() + "/" + weaponList.get(i).getAgility()
+					+ "/" + weaponList.get(i).getAccuracy()
+					+ "\n";
 			}
-			missiles += "\n";
+			weapons += "\n";
 		}
-		return missiles;
+		return weapons;
 	}
-
-	public String checkLaserBay(List<Laser> laserList){
-		String lasers = "";
-		if(laserList.isEmpty()){
-			return lasers;
-		}else{
-			for(int i = 0 ; i < laserList.size() ; i++) {
-				lasers += "l" + (i+1) + " ";
-				lasers += "Laser damage: " + laserList.get(i).getDamage() + " ("
-					+ laserList.get(i).getEnergyCost() + " p/t)\n";
-			}
-			lasers += "\n";
-		}
-		return lasers;
-	}
-
-	public String checkGeneratorBay(List<Generator> generatorList){
-		String generators = "";
-		if(generatorList.isEmpty()){
-			return generators;
-		}else{
-			for(int i = 0 ; i < generatorList.size() ; i++) {
-				generators += "g" + (i+1) + " ";
-				generators += "Generator energy p/t: " + generatorList.get(i).getEnergyPerTurn() + "\n";
-			}
-			generators += "\n";
-		}
-		return generators;
-	}*/
 }

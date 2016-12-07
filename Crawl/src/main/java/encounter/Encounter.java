@@ -27,4 +27,5 @@ public class Encounter {
 	public void endEncounter(){
 		Game.setInEncounter(false);
 	}
+
 }

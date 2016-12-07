@@ -49,9 +49,10 @@ public class Battle {
 
 	//Calculates the total damage done to the enemy or the player. Input is attacker damage and defender protection
 	public int damageCalc(double damage, int protection){
-		double maxProtection = (damage / 10) * 8; //max protection is 80% of the damage
-		double minDamage = damage - maxProtection;
-		double totalDamage = damage - protection;
+		double damageDone = rng.nextInt(10) + damage; //Damage done is 1 to 10, plus the base damage of the actor
+		double maxProtection = (damageDone / 10) * 8; //max protection is 80% of the damage
+		double minDamage = damageDone - maxProtection;
+		double totalDamage = damageDone - protection;
 		if(totalDamage < minDamage)
 			totalDamage = minDamage;
 		if(totalDamage < 1)

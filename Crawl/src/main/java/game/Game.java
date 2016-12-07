@@ -44,7 +44,12 @@ public class Game {
 			if(inEncounter){
 				switch(action.toLowerCase().substring(0, 1)){
 					case "b":
-
+						encounter.startBattle();
+						break;
+					case "f":
+					case "r":
+						if(fleeRoll()) endEncounter();
+						break;
 				}
 			}
 		}
@@ -56,6 +61,13 @@ public class Game {
 		statsPanel.update();
 	}
 
+	/**
+	 * E = Explore
+	 * In encounter:
+	 * B = Battle
+	 * F = Fight
+	 * R = Run away
+     */
 	public boolean validInput(String input){
 		String a = input.substring(0,1);
 		if(a.equals("e")){
@@ -71,9 +83,22 @@ public class Game {
 
 	public void encounterRoll(){
 		if(rng.nextInt(100) > 50){
-			inEncounter = true;
-			encounter = new Encounter(player);
+			startEncounter();
 		}
+	}
+
+	public void endEncounter(){
+		inEncounter = false;
+	}
+	public void startEncounter(){
+		inEncounter = true;
+		encounter = new Encounter(player);
+	}
+
+	public boolean fleeRoll(){
+		if(rng.nextInt(100) + player.getAgility() > 50){
+			return true;
+		} else return false;
 	}
 
 	public static boolean isInEncounter() {
