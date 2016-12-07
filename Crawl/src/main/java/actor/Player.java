@@ -3,6 +3,7 @@ package actor;
 import items.Armor;
 import items.Weapon;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,8 +27,8 @@ public class Player extends Actor {
 	private Weapon main = new Weapon(0, 0, 0, 0, 0, 1, 0, "mace");
 
 	//Player's inventory, divided into two parts
-	private List<Armor> armorList;
-	private List<Weapon> weaponList;
+	private List<Armor> armorList = new ArrayList<>();
+	private List<Weapon> weaponList = new ArrayList<>();
 
 	public Player(String name){
 		this.name = name;
@@ -222,5 +223,21 @@ public class Player extends Actor {
 	//Used when the player is attacked and increases the max health
 	public void damageHealth(int totalDamage){
 		this.maxHealth += ((double)totalDamage/150);
+	}
+
+	public List<Armor> getArmorList() {
+		return armorList;
+	}
+
+	public void setArmorList(List<Armor> armorList) {
+		this.armorList = armorList;
+	}
+
+	public List<Weapon> getWeaponList() {
+		return weaponList;
+	}
+
+	public void setWeaponList(List<Weapon> weaponList) {
+		this.weaponList = weaponList;
 	}
 }
